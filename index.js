@@ -43,39 +43,9 @@ app.use(async (req, res, next) => {
 	next();
 });
 
-app.get('/auth/pipedrive', passport.authenticate('pipedrive'));
-app.get('/auth/pipedrive/callback', passport.authenticate('pipedrive', {
-	session: false,
-	failureRedirect: '/',
-	successRedirect: '/'
-}));
-app.get('/', async (req, res) => {
-	if (req.user.length < 1) {
-		return res.redirect('/auth/pipedrive');
-	}
+// `Step 2` Code goes here... 👇
 
-	try {
-		const deals = await api.getDeals(req.user[0].access_token);
+// End of `Step 2`
 
-		res.render('deals', {
-			name: req.user[0].username,
-			deals: deals.data
-		});
-	} catch (error) {
-		return res.send(error.message);
-	}
-});
-app.get('/deals/:id', async (req, res) => {
-	const randomBoolean = Math.random() >= 0.5;
-	const outcome = randomBoolean === true ? 'won' : 'lost';
 
-	try {
-		await api.updateDeal(req.params.id, outcome, req.user[0].access_token);
-
-		res.render('outcome', { outcome });
-	} catch (error) {
-		return res.send(error.message);
-	}
-});
-
-app.listen(port, () => console.log(`App listening on port ${port}`));
+app.listen(port, () => console.log(`🟢 App has started. Listening on port ${port}`)); 
