@@ -48,4 +48,4 @@ app.use(async (req, res, next) => {
 // End of `Step 2`
 
 
-app.listen(port, () => console.log(`🟢 App has started. Listening on port ${port}`)); 
+app.listen(port, () => console.log(`🟢 App has started. \n🔗 Live URL: https://${process.env.PROJECT_DOMAIN}.glitch.me`));
