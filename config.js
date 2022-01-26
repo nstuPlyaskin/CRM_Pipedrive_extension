@@ -1,5 +1,5 @@
 module.exports = {
-	clientID: 'yyy',
+	clientID: '',
 	clientSecret: 'zzz',
 	callbackURL: 'http://localhost:3000/auth/pipedrive/callback'
 };
