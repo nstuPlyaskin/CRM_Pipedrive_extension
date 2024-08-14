@@ -5,8 +5,8 @@ const { Strategy } = require('passport-oauth2');
 const bodyParser = require('body-parser');
 const Pipedrive = require('pipedrive');
 
-// Подключение SDK Pipedrive (загрузите его через npm)
-const { Command, Event, PipedriveSDK } = require('pipedrive-sdk');
+// Подключение SDK Pipedrive
+const { AppExtensionsSDK } = require('@pipedrive/app-extensions-sdk');
 
 // Настройка API Token для Pipedrive
 const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените на ваш API Token
@@ -15,7 +15,7 @@ const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените
 const pipedrive = new Pipedrive.ApiClient(apiToken);
 
 // Настройка SDK
-const sdk = new PipedriveSDK();
+const sdk = new AppExtensionsSDK();
 
 const api = require('./api');
 const config = require('./config');
@@ -177,11 +177,15 @@ app.post('/submit-job', async (req, res) => {
         console.log('Deal Created:', deal);
 
         // Покажем уведомление и закроем модальное окно
-        await sdk.execute(Command.HIDE_FLOATING_WINDOW, {
-            context: {
-                message: 'Job created successfully!'
+        await sdk.execute('SHOW_SNACKBAR', {
+            message: 'Job created successfully!',
+            link: {
+                url: 'https://app.pipedrive.com',
+                label: 'View Job'
             }
         });
+
+        await sdk.execute('HIDE_FLOATING_WINDOW');
 
         res.send('Job created successfully!');
     } catch (error) {
@@ -191,7 +195,7 @@ app.post('/submit-job', async (req, res) => {
 });
 
 // Отслеживание событий видимости
-sdk.listen(Event.VISIBILITY, ({ error, data }) => {
+sdk.listen('VISIBILITY', ({ error, data }) => {
     if (error) {
         console.error('Visibility event error:', error);
     } else {
