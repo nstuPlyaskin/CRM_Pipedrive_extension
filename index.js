@@ -12,6 +12,9 @@ const pipedrive = new Pipedrive.ApiClient(apiToken);
 const app = express();
 const port = 3000;
 
+// Раздача статических файлов
+app.use(express.static(__dirname));
+
 // Middleware для обработки тела запроса
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -96,6 +99,7 @@ app.get('/callback', (req, res) => {
                 </div>
                 <button type="submit">Create Job</button>
             </form>
+            <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
         </body>
         </html>
     `);
