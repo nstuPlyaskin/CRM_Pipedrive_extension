@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const Pipedrive = require('pipedrive');
 
 // Настройка API Token для Pipedrive
@@ -13,10 +12,6 @@ const pipedrive = new Pipedrive.ApiClient(apiToken);
 const app = express();
 const port = 3000;
 
-// Настройка EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
 // Раздача статических файлов
 app.use(express.static(__dirname));
 
@@ -26,7 +21,116 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET-маршрут для отображения формы в iframe
 app.get('/callback', (req, res) => {
-    res.render('callback');
+    res.send(`
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create a Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 500px;
+            height: 100px;
+            overflow: hidden; /* Предотвращает прокрутку на фоне */
+        }
+        .modal-container {
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+            padding: 60px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 28px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow-y: auto; /* Прокрутка, если контент превышает высоту */
+        }
+        h1 {
+            color: #333;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> <!-- Подключаем SDK -->
+    <script>
+        (async function() {
+            const sdk = await new AppExtensionsSDK().initialize();
+        })();
+    </script>
+</head>
+<body>
+    <div class="modal-container">
+        <h1>Create a New Job</h1>
+        <form action="/submit-job" method="post">
+            <div>
+                <label>First Name:</label>
+                <input type="text" name="firstName" required>
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <input type="text" name="lastName" required>
+            </div>
+            <div>
+                <label>Phone:</label>
+                <input type="tel" name="phone" required>
+            </div>
+            <div>
+                <label>Email (optional):</label>
+                <input type="email" name="email">
+            </div>
+            <div>
+                <label>Job Type:</label>
+                <select name="jobType">
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                </select>
+            </div>
+            <div>
+                <label>Start Date:</label>
+                <input type="date" name="startDate" required>
+            </div>
+            <div>
+                <label>Start Time:</label>
+                <input type="time" name="startTime" required>
+            </div>
+            <div>
+                <label>End Time:</label>
+                <input type="time" name="endTime">
+            </div>
+            <button type="submit">Create Job</button>
+        </form>
+    </div>
+    <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
+</body>
+</html>
+
+    `);
 });
 
 // Обработка POST-запроса от Pipedrive
