@@ -8,9 +8,10 @@ import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
 
     await sdk.execute('showFloatingWindow', {
         context: {
-            url: 'http://localhost:3000/callback', // Убедитесь, что URL верный
-            width: height, // Устанавливаем ширину равной высоте экрана
-            height: height // Также устанавливаем высоту равной высоте экрана, если нужно
+            url: 'https://iridescent-jagged-magic.glitch.me/callback', // Убедитесь, что URL верный
+            title: 'My Cu2323232stom Modal',
+            width: "500px", // Устанавливаем ширину равной высоте экрана
+            height: "1000px" // Также устанавливаем высоту равной высоте экрана, если нужно
         }
     });
 

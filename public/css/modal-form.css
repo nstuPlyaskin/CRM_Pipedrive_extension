@@ -1,8 +1,8 @@
-.cui5-modal__wrap{
-    width: 100vh;
-}
-#cui5-modal__wrap{
-    width: 100vh;
+iframe {
+    width: 900px;
+    height: 600px;
+    border: none;
+
 }
 cui5-modal__wrap{
     width: 100vh;
