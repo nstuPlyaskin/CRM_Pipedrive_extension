@@ -1,7 +1,7 @@
 import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
 
 (async function() {
-    const sdk = await new AppExtensionsSDK().initialize();
+    const sdk = await new AppExtensionsSDK().initialize({ size: { height: 950 } });
 
     // Получаем высоту экрана
     const height = window.innerHeight;
