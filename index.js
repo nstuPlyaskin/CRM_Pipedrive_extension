@@ -42,48 +42,7 @@ app.use(async (req, res, next) => {
 		next();
 });
 
-// Remove this section on Glitch
-
-app.get('/auth/pipedrive', passport.authenticate('pipedrive'));
-app.get('/auth/pipedrive/callback', passport.authenticate('pipedrive', {
-	session: false,
-	failureRedirect: '/',
-	successRedirect: '/'
-}));
-app.get('/', async (req, res) => {
-	if (req.user.length < 1) {
-		return res.redirect('/auth/pipedrive');
-	}
-
-	try {
-		const deals = await api.getDeals(req.user[0].access_token);
-
-		res.render('deals', {
-			name: req.user[0].username,
-			deals: deals.data
-		});
-	} catch (error) {
-		console.log(error);
-
-		return res.send('Failed to get deals');
-	}
-});
-app.get('/deals/:id', async (req, res) => {
-	const randomBoolean = Math.random() >= 0.5;
-	const outcome = randomBoolean === true ? 'won' : 'lost';
-
-	try {
-		await api.updateDeal(req.params.id, outcome, req.user[0].access_token);
-
-		res.render('outcome', { outcome });
-	} catch (error) {
-		console.log(error);
-
-		return res.send('Failed to update the deal');
-	}
-});
-
-// End of section to remove on Glitch
+/* step 2 code goes here */
 
 app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}`));
 
