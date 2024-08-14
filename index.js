@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Pipedrive = require('pipedrive');
+const path = require('path');
 
 // Настройка API Token для Pipedrive
 const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените на ваш API Token
@@ -14,7 +15,6 @@ const port = 3000;
 
 // Раздача статических файлов
 app.use(express.static(__dirname));
-const path = require('path');
 
 // Middleware для обработки тела запроса
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET-маршрут для отображения формы в iframe
 app.get('/callback', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'callback.html'));
+    res.sendFile(path.join(__dirname, 'views', 'callback.html'));
 });
 
 // Обработка POST-запроса от Pipedrive
