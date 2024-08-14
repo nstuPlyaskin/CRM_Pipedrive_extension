@@ -17,6 +17,7 @@
   "author": "Siim Kibus",
   "license": "ISC",
   "dependencies": {
+    "@pipedrive/app-extensions-sdk": "^0.10.2",
     "axios": "^1.7.3",
     "express": "^4.19.2",
     "hbs": "^4.2.0",

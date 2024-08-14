@@ -2,15 +2,20 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const { Strategy } = require('passport-oauth2');
-
 const bodyParser = require('body-parser');
 const Pipedrive = require('pipedrive');
+
+// Подключение SDK Pipedrive (загрузите его через npm)
+const { Command, Event, PipedriveSDK } = require('pipedrive-sdk');
 
 // Настройка API Token для Pipedrive
 const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените на ваш API Token
 
 // Создайте экземпляр клиента Pipedrive
 const pipedrive = new Pipedrive.ApiClient(apiToken);
+
+// Настройка SDK
+const sdk = new PipedriveSDK();
 
 const api = require('./api');
 const config = require('./config');
@@ -23,24 +28,23 @@ const port = 3000;
 User.createTable();
 
 passport.use(
-	'pipedrive',
-	new Strategy({
-			authorizationURL: 'https://oauth.pipedrive.com/oauth/authorize',
-			tokenURL: 'https://oauth.pipedrive.com/oauth/token',
-			clientID: config.clientID || '',
-			clientSecret: config.clientSecret || '',
-			callbackURL: config.callbackURL || ''
-		}, async (accessToken, refreshToken, profile, done) => {
-				const userInfo = await api.getUser(accessToken);
-				const user = await User.add(
-					userInfo.data.name,
-					accessToken,
-					refreshToken
-				);
-
-				done(null, user);
-		}
-	)
+    'pipedrive',
+    new Strategy({
+            authorizationURL: 'https://oauth.pipedrive.com/oauth/authorize',
+            tokenURL: 'https://oauth.pipedrive.com/oauth/token',
+            clientID: config.clientID || '',
+            clientSecret: config.clientSecret || '',
+            callbackURL: config.callbackURL || ''
+        }, async (accessToken, refreshToken, profile, done) => {
+            const userInfo = await api.getUser(accessToken);
+            const user = await User.add(
+                userInfo.data.name,
+                accessToken,
+                refreshToken
+            );
+            done(null, user);
+        }
+    )
 );
 
 app.set('views', path.join(__dirname, 'views'));
@@ -49,14 +53,14 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(async (req, res, next) => {
-		req.user = await User.getById(1);
-		next();
+    req.user = await User.getById(1);
+    next();
 });
 
-/* step 2 code goes here */
 // Middleware для обработки тела запроса
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // GET-маршрут для отображения формы в iframe
 app.get('/callback', (req, res) => {
     res.send(`
@@ -171,6 +175,14 @@ app.post('/submit-job', async (req, res) => {
         });
 
         console.log('Deal Created:', deal);
+
+        // Покажем уведомление и закроем модальное окно
+        await sdk.execute(Command.HIDE_FLOATING_WINDOW, {
+            context: {
+                message: 'Job created successfully!'
+            }
+        });
+
         res.send('Job created successfully!');
     } catch (error) {
         console.error('Error creating job:', error);
@@ -178,17 +190,26 @@ app.post('/submit-job', async (req, res) => {
     }
 });
 
+// Отслеживание событий видимости
+sdk.listen(Event.VISIBILITY, ({ error, data }) => {
+    if (error) {
+        console.error('Visibility event error:', error);
+    } else {
+        console.log('Visibility event:', data);
+        if (data.is_visible) {
+            console.log('Floating window is visible');
+        } else {
+            console.log('Floating window is hidden');
+        }
+    }
+});
 
-// zamenil
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
 
-
-
 if (process.env.IS_LOCAL === 'true') {
-	console.log(`🟢 App has started. \n🔗 Development URL: http://localhost:3000`);
+    console.log(`🟢 App has started. \n🔗 Development URL: http://localhost:3000`);
 } else {
-	console.log(`🟢 App has started. \n🔗 Live URL: https://${process.env.PROJECT_DOMAIN}.glitch.me`);
+    console.log(`🟢 App has started. \n🔗 Live URL: https://${process.env.PROJECT_DOMAIN}.glitch.me`);
 }
-
