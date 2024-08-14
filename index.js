@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const Pipedrive = require('pipedrive');
 
 // Настройка API Token для Pipedrive
-const apiToken = 'YOUR_PIPEDRIVE_API_TOKEN'; // Замените на ваш API Token
+const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените на ваш API Token
 
 // Создайте экземпляр клиента Pipedrive
 const pipedrive = new Pipedrive.ApiClient(apiToken);
@@ -16,9 +16,11 @@ const api = require('./api');
 const config = require('./config');
 const User = require('./db/user');
 
-User.createTable();
-
+// Настройка Express
 const app = express();
+const port = 3000;
+
+User.createTable();
 
 passport.use(
 	'pipedrive',
