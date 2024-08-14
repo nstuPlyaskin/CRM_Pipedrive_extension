@@ -14,6 +14,7 @@ const port = 3000;
 
 // Раздача статических файлов
 app.use(express.static(__dirname));
+const path = require('path');
 
 // Middleware для обработки тела запроса
 app.use(bodyParser.json());
@@ -21,65 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET-маршрут для отображения формы в iframe
 app.get('/callback', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Create a Job</title>
-            <link rel="stylesheet" type="text/css" href="/css/modal-form.css">
-            <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> <!-- Подключаем SDK -->
-            <script>
-                (async function() {
-                    const sdk = await new AppExtensionsSDK().initialize();
-                })();
-            </script>
-        </head>
-        <body>
-            <h1>Create a New Job</h1>
-            <form action="/submit-job" method="post">
-                <div>
-                    <label>First Name:</label>
-                    <input type="text" name="firstName" required>
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input type="text" name="lastName" required>
-                </div>
-                <div>
-                    <label>Phone:</label>
-                    <input type="tel" name="phone" required>
-                </div>
-                <div>
-                    <label>Email (optional):</label>
-                    <input type="email" name="email">
-                </div>
-                <div>
-                    <label>Job Type:</label>
-                    <select name="jobType">
-                        <option value="type1">Type 1</option>
-                        <option value="type2">Type 2</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Start Date:</label>
-                    <input type="date" name="startDate" required>
-                </div>
-                <div>
-                    <label>Start Time:</label>
-                    <input type="time" name="startTime" required>
-                </div>
-                <div>
-                    <label>End Time:</label>
-                    <input type="time" name="endTime">
-                </div>
-                <button type="submit">Create Job</button>
-            </form>
-            <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
-        </body>
-        </html>
-    `);
+    res.sendFile(path.join(__dirname, 'public', 'callback.html'));
 });
-
 
 // Обработка POST-запроса от Pipedrive
 app.post('/callback', (req, res) => {
