@@ -26,40 +26,7 @@ app.get('/callback', (req, res) => {
         <html>
         <head>
             <title>Create a Job</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 20px;
-                    padding: 0;
-                    width:
-                }
-                h1 {
-                    color: #333;
-                }
-                form div {
-                    margin: 15px;
-                }
-                label {
-                    display: block;
-                    font-weight: bold;
-                    margin-bottom: 5px;
-                }
-                input, select {
-                    width: 100%;
-                    padding: 8px;
-                    box-sizing: border-box;
-                }
-                button {
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    cursor: pointer;
-                }
-                button:hover {
-                    background-color: #45a049;
-                }
-            </style>
+            <link rel="stylesheet" type="text/css" href="/css/modal-form.css">
             <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> <!-- Подключаем SDK -->
             <script>
                 (async function() {
@@ -112,6 +79,7 @@ app.get('/callback', (req, res) => {
         </html>
     `);
 });
+
 
 // Обработка POST-запроса от Pipedrive
 app.post('/callback', (req, res) => {
