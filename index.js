@@ -31,12 +31,13 @@ app.get('/callback', (req, res) => {
                     font-family: Arial, sans-serif;
                     margin: 20px;
                     padding: 0;
+                    width:
                 }
                 h1 {
                     color: #333;
                 }
                 form div {
-                    margin-bottom: 15px;
+                    margin: 15px;
                 }
                 label {
                     display: block;
