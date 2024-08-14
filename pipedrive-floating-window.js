@@ -1,7 +1,7 @@
 import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
 
 (async function() {
-    const sdk = await new AppExtensionsSDK().initialize({ size: { height: 950 } });
+    const sdk = await new AppExtensionsSDK().initialize();
 
     // Получаем высоту экрана
     const height = window.innerHeight;
@@ -9,9 +9,8 @@ import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
     await sdk.execute('showFloatingWindow', {
         context: {
             url: 'https://iridescent-jagged-magic.glitch.me/callback', // Убедитесь, что URL верный
-            title: 'My Cu2323232stom Modal',
-            width: "500px", // Устанавливаем ширину равной высоте экрана
-            height: "1000px" // Также устанавливаем высоту равной высоте экрана, если нужно
+            width: height, // Устанавливаем ширину равной высоте экрана
+            height: height // Также устанавливаем высоту равной высоте экрана, если нужно
         }
     });
 

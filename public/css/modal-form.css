@@ -1,4 +1,10 @@
-iframe {
+*{
+  width: 500px;
+  height: 900px;
+  overflow: hidden;
+}
+
+/* iframe {
     width: 900px;
     height: 600px;
     border: none;
@@ -38,3 +44,4 @@ button {
 button:hover {
     background-color: #45a049;
 }
+ */
