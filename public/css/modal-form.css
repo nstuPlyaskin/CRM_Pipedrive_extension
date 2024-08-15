@@ -1,67 +1,74 @@
-/* Устанавливаем размеры iframe, если необходимо */
-iframe {
-    width: 900px;
-    height: 600px;
-    border: none;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
     padding: 0;
+    background-color: #f5f5f5;
 }
 
-h1 {
-    color: #333333;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
-h2 {
-    color: #444444;
+.form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.section {
-    margin-bottom: 30px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+.form-section h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-form div {
-    margin: 15px 0;
+.form-group {
+    margin-bottom: 15px;
 }
 
-label {
+.form-group label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #333;
 }
 
-input, select, textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
-textarea {
+.form-group textarea {
     resize: vertical;
-    min-height: 100px;
 }
 
-button {
+.form-actions {
+    text-align: center;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+}
+
+.form-actions button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-button:hover {
+.form-actions button:hover {
     background-color: #45a049;
-}
-
-.submit-button {
-    margin-top: 20px;
-    text-align: center;
 }
