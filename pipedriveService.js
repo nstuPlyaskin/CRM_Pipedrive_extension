@@ -59,6 +59,7 @@ async function findOrCreatePerson(jobData) {
   return personId;
 }
 
+// creating custom fields
 async function createJob(jobData) {
   try {
     const [
@@ -91,6 +92,7 @@ async function createJob(jobData) {
       getOrCreateCustomField('Test Select', 'varchar')
     ]);
 
+    // send post request to write new jobData 
     const dealResponse = await axios.post(`${apiUrl}/deals?api_token=${apiToken}`, {
       title: `${jobData.firstName} ${jobData.lastName} - ${jobData.jobType}`,
       person_id: personId,
