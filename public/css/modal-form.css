@@ -8,6 +8,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
@@ -55,8 +56,8 @@ body {
 
 .form-actions {
     text-align: center;
-    margin-top: 20px;
     grid-column: 1 / -1;
+    margin-top: 20px;
 }
 
 .form-actions button {
