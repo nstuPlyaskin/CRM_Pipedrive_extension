@@ -17,7 +17,7 @@ form{
     gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
-    margin-top:
+    margin-top: 5px;
     padding: 20px;
 }
 
@@ -31,7 +31,7 @@ form{
 .form-section h2 {
     font-size: 18px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .form-group {

@@ -3,14 +3,16 @@ import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
 (async function() {
     const sdk = await new AppExtensionsSDK().initialize();
 
-    // Получаем высоту экрана
-    const height = window.innerHeight;
+    // Define the desired width and height for the floating window
+    const desiredWidth = 600; // Set your desired width in pixels
+    const desiredHeight = 400; // Set your desired height in pixels
 
     await sdk.execute('showFloatingWindow', {
+        message: 'Action ZZZZZZ completed',
         context: {
-            url: 'https://iridescent-jagged-magic.glitch.me/callback', // Убедитесь, что URL верный
-            width: height, // Устанавливаем ширину равной высоте экрана
-            height: height // Также устанавливаем высоту равной высоте экрана, если нужно
+            url: 'https://iridescent-jagged-magic.glitch.me/callback', // Ensure the URL is correct
+            width: desiredWidth, // Set the width of the floating window
+            height: desiredHeight // Set the height of the floating window
         }
     });
 
