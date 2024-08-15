@@ -8,7 +8,6 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
     gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
@@ -20,6 +19,16 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+#client-section{
+    display: grid;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .form-section h2 {
@@ -56,7 +65,7 @@ body {
 
 .form-actions {
     text-align: center;
-    grid-column: 1 / -1;
+    grid-column: span 2; /* Центровка кнопки на всю ширину формы */
     margin-top: 20px;
 }
 

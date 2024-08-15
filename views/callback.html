@@ -15,31 +15,26 @@
 <body>
     <div class="container">
         <form id="job-form" action="/submit-job" method="POST">
-            <div class="form-section">
+            <div class="form-section" id="client-section">
                 <h2>Client details</h2>
                 <div class="form-group">
-                    <label for="firstName">First name</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="firstName" placeholder="First name" required>
                 </div>
                 <div class="form-group">
-                    <label for="lastName">Last name</label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email (optional)</label>
-                    <input type="email" id="email" name="email">
+                    <input type="email" id="email" name="email" placeholder="Email (optional)">
                 </div>
             </div>
 
             <div class="form-section">
                 <h2>Job details</h2>
                 <div class="form-group">
-                    <label for="jobType">Job type</label>
-                    <select id="jobType" name="jobType">
+                    <select id="jobType" name="jobType" placeholdr="Job type">
                         <option value="type1">Type 1</option>
                         <option value="type2">Type 2</option>
                         <option value="type3">Type 3</option>
