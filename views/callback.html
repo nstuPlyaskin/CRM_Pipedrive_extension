@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a Job</title>
     <link rel="stylesheet" href="../public/css/modal-form.css">
     <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
@@ -9,13 +11,93 @@
             const sdk = await new AppExtensionsSDK().initialize();
         })();
     </script>
+    <style>
+        /* Основные стили для формы */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Стили для каждой секции */
+        .form-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        /* Заголовки секций */
+        .form-section h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Стили для элементов формы */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        /* Стили для кнопок */
+        .form-actions {
+            text-align: right;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-actions button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .form-actions button[type="button"] {
+            background-color: #f44336;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .form-actions button:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- 1st Section: Client Details -->
-        <div class="form-section">
-            <h2>Client details</h2>
-            <form id="client-details-form">
+        <form id="job-form" action="/submit-job" method="POST">
+            <!-- Секция: Client Details -->
+            <div class="form-section">
+                <h2>Client details</h2>
                 <div class="form-group">
                     <label for="firstName">First name</label>
                     <input type="text" id="firstName" name="firstName" required>
@@ -32,13 +114,11 @@
                     <label for="email">Email (optional)</label>
                     <input type="email" id="email" name="email">
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 2nd Section: Job Details -->
-        <div class="form-section">
-            <h2>Job details</h2>
-            <form id="job-details-form">
+            <!-- Секция: Job Details -->
+            <div class="form-section">
+                <h2>Job details</h2>
                 <div class="form-group">
                     <label for="jobType">Job type</label>
                     <select id="jobType" name="jobType">
@@ -59,13 +139,11 @@
                     <label for="jobDescription">Job description (optional)</label>
                     <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 3rd Section: Service Location -->
-        <div class="form-section">
-            <h2>Service location</h2>
-            <form id="service-location-form">
+            <!-- Секция: Service Location -->
+            <div class="form-section">
+                <h2>Service location</h2>
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" id="address" name="address" required>
@@ -90,13 +168,11 @@
                         <option value="area3">Area 3</option>
                     </select>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 4th Section: Scheduled -->
-        <div class="form-section">
-            <h2>Scheduled</h2>
-            <form id="scheduled-form">
+            <!-- Секция: Scheduled -->
+            <div class="form-section">
+                <h2>Scheduled</h2>
                 <div class="form-group">
                     <label for="startDate">Start date</label>
                     <input type="date" id="startDate" name="startDate" required>
@@ -117,51 +193,13 @@
                         <option value="option3">Option 3</option>
                     </select>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <!-- Кнопки действий -->
+            <div class="form-actions">
+                <button type="submit">Create Job</button>
+            </div>
+        </form>
     </div>
-
-    <!-- Кнопки действий -->
-    <div class="form-actions">
-        <button type="button" onclick="submitAllForms()">Create Job</button>
-        <button type="button" onclick="window.close();">Cancel</button>
-    </div>
-
-    <script>
-        async function submitAllForms() {
-            const forms = [
-                document.getElementById('client-details-form'),
-                document.getElementById('job-details-form'),
-                document.getElementById('service-location-form'),
-                document.getElementById('scheduled-form')
-            ];
-
-            const formData = new FormData();
-
-            // Сбор данных из всех форм
-            forms.forEach(form => {
-                const formEntries = new FormData(form).entries();
-                for (const [key, value] of formEntries) {
-                    formData.append(key, value);
-                }
-            });
-
-            try {
-                const response = await sdk.request('POST', '/your-submit-endpoint', formData);
-
-                if (response.ok) {
-                    // Обработка успешного ответа
-                    console.log('Success:', await response.json());
-                    sdk.closeModal();
-                } else {
-                    console.error('Error:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Request failed:', error);
-            }
-        }
-    </script>
-
-    <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
 </body>
 </html>
