@@ -30,14 +30,14 @@ async function getOrCreateCustomField(fieldName, fieldType) {
 
     if (existingField) {
       // Поле существует, возвращаем его ID
-      return existingField.id;
+      return existingField.key;
     } else {
       // Поле не существует, создаем его
       const createFieldResponse = await axios.post(`${apiUrl}/dealFields?api_token=${apiToken}`, {
         name: fieldName,
         field_type: fieldType,
       });
-      return createFieldResponse.data.data.id;
+      return createFieldResponse.data.data.key;
     }
   } catch (error) {
     console.error(`Error in getting or creating custom field ${fieldName}:`, error.response ? error.response.data : error.message);
@@ -56,18 +56,18 @@ app.post('/submit-job', async (req, res) => {
 
   try {
     // Создаем или находим кастомные поля
-    const jobTypeFieldId = await getOrCreateCustomField('Job Type', 'varchar');
-    const jobSourceFieldId = await getOrCreateCustomField('Job Source', 'varchar');
-    const jobDescriptionFieldId = await getOrCreateCustomField('Job Description', 'text');
-    const addressFieldId = await getOrCreateCustomField('Address', 'varchar');
-    const cityFieldId = await getOrCreateCustomField('City', 'varchar');
-    const stateFieldId = await getOrCreateCustomField('State', 'varchar');
-    const zipCodeFieldId = await getOrCreateCustomField('Zip Code', 'varchar');
-    const areaFieldId = await getOrCreateCustomField('Area', 'varchar');
-    const startDateFieldId = await getOrCreateCustomField('Start Date', 'date');
-    const startTimeFieldId = await getOrCreateCustomField('Start Time', 'time');
-    const endTimeFieldId = await getOrCreateCustomField('End Time', 'time');
-    const testSelectFieldId = await getOrCreateCustomField('Test Select', 'varchar');
+    const jobTypeFieldKey = await getOrCreateCustomField('Job Type', 'varchar');
+    const jobSourceFieldKey = await getOrCreateCustomField('Job Source', 'varchar');
+    const jobDescriptionFieldKey = await getOrCreateCustomField('Job Description', 'text');
+    const addressFieldKey = await getOrCreateCustomField('Address', 'varchar');
+    const cityFieldKey = await getOrCreateCustomField('City', 'varchar');
+    const stateFieldKey = await getOrCreateCustomField('State', 'varchar');
+    const zipCodeFieldKey = await getOrCreateCustomField('Zip Code', 'varchar');
+    const areaFieldKey = await getOrCreateCustomField('Area', 'varchar');
+    const startDateFieldKey = await getOrCreateCustomField('Start Date', 'date');
+    const startTimeFieldKey = await getOrCreateCustomField('Start Time', 'time');
+    const endTimeFieldKey = await getOrCreateCustomField('End Time', 'time');
+    const testSelectFieldKey = await getOrCreateCustomField('Test Select', 'varchar');
 
     // Создаем нового клиента (или настраиваем существующего)
     let personId = null;
@@ -100,20 +100,18 @@ app.post('/submit-job', async (req, res) => {
       title: `${jobData.firstName} ${jobData.lastName} - ${jobData.jobType}`,
       person_id: personId,
       value: 0, // Установите значение сделки, если это необходимо
-      custom_fields: {
-        [jobTypeFieldId]: jobData.jobType,
-        [jobSourceFieldId]: jobData.jobSource,
-        [jobDescriptionFieldId]: jobData.jobDescription,
-        [addressFieldId]: jobData.address,
-        [cityFieldId]: jobData.city,
-        [stateFieldId]: jobData.state,
-        [zipCodeFieldId]: jobData.zipCode,
-        [areaFieldId]: jobData.area,
-        [startDateFieldId]: jobData.startDate,
-        [startTimeFieldId]: jobData.startTime,
-        [endTimeFieldId]: jobData.endTime,
-        [testSelectFieldId]: jobData.testSelect
-      }
+      [jobTypeFieldKey]: jobData.jobType,
+      [jobSourceFieldKey]: jobData.jobSource,
+      [jobDescriptionFieldKey]: jobData.jobDescription,
+      [addressFieldKey]: jobData.address,
+      [cityFieldKey]: jobData.city,
+      [stateFieldKey]: jobData.state,
+      [zipCodeFieldKey]: jobData.zipCode,
+      [areaFieldKey]: jobData.area,
+      [startDateFieldKey]: jobData.startDate,
+      [startTimeFieldKey]: jobData.startTime,
+      [endTimeFieldKey]: jobData.endTime,
+      [testSelectFieldKey]: jobData.testSelect
     });
 
     console.log('Deal Created:', dealResponse.data);
