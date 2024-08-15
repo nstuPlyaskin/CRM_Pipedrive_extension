@@ -96,7 +96,7 @@ async function createJob(jobData) {
     const dealResponse = await axios.post(`${apiUrl}/deals?api_token=${apiToken}`, {
       title: `${jobData.firstName} ${jobData.lastName} - ${jobData.jobType}`,
       person_id: personId,
-      value: 0, // Установите значение сделки, если это необходимо
+      value: 0,
       [jobTypeFieldKey]: jobData.jobType,
       [jobSourceFieldKey]: jobData.jobSource,
       [jobDescriptionFieldKey]: jobData.jobDescription,
