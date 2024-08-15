@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a Job</title>
-    <link rel="stylesheet" href="modal-form.css">
+    <link rel="stylesheet" href="../public/css/modal-form.css">
+    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
+    <script>
+        (async function() {
+            const sdk = await new AppExtensionsSDK().initialize();
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -122,6 +126,6 @@
         <button type="submit" form="client-details-form job-details-form service-location-form scheduled-form">Create Job</button>
     </div>
 
-    <script src="/modal.js"></script>
+    <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
 </body>
 </html>
