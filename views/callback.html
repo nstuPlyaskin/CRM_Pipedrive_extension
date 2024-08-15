@@ -11,91 +11,10 @@
             const sdk = await new AppExtensionsSDK().initialize();
         })();
     </script>
-    <style>
-        /* Основные стили для формы */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Стили для каждой секции */
-        .form-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        
-        /* Заголовки секций */
-        .form-section h2 {
-            margin-top: 0;
-            font-size: 18px;
-            color: #333;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        
-        /* Стили для элементов формы */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        
-        /* Стили для кнопок */
-        .form-actions {
-            text-align: right;
-        }
-
-        .form-actions button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .form-actions button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .form-actions button[type="button"] {
-            background-color: #f44336;
-            color: white;
-            margin-left: 10px;
-        }
-
-        .form-actions button:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <form id="job-form" action="/submit-job" method="POST">
-            <!-- Секция: Client Details -->
             <div class="form-section">
                 <h2>Client details</h2>
                 <div class="form-group">
@@ -116,7 +35,6 @@
                 </div>
             </div>
 
-            <!-- Секция: Job Details -->
             <div class="form-section">
                 <h2>Job details</h2>
                 <div class="form-group">
@@ -141,7 +59,6 @@
                 </div>
             </div>
 
-            <!-- Секция: Service Location -->
             <div class="form-section">
                 <h2>Service location</h2>
                 <div class="form-group">
@@ -170,7 +87,6 @@
                 </div>
             </div>
 
-            <!-- Секция: Scheduled -->
             <div class="form-section">
                 <h2>Scheduled</h2>
                 <div class="form-group">
@@ -195,7 +111,6 @@
                 </div>
             </div>
 
-            <!-- Кнопки действий -->
             <div class="form-actions">
                 <button type="submit">Create Job</button>
             </div>
