@@ -1,129 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a Job</title>
-    <link rel="stylesheet" href="../public/css/modal-form.css">
-    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> <!-- Подключаем SDK -->
-    <script>
-        (async function() {
-            const sdk = await new AppExtensionsSDK().initialize();
-        })();
-    </script>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем внешний CSS файл -->
 </head>
 <body>
-    <div class="container">
-        <!-- 1st Section: Client Details -->
-        <div class="section" id="client-details-frame">
-            <h1>Client Details</h1>
-            <form action="/submit-job" method="post">
-                <div class="form-group">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email (optional):</label>
-                    <input type="email" id="email" name="email">
-                </div>
-            </form>
-        </div>
-
-        <!-- 2nd Section: Job Details -->
+    <h1>Create a New Job</h1>
+    <form action="/submit-job" method="post">
+        <!-- 1. Client Details -->
         <div class="section">
-            <h1>Job Details</h1>
-            <form action="/submit-job" method="post">
-                <div class="form-group">
-                    <label for="jobType">Job Type:</label>
-                    <select id="jobType" name="jobType">
-                        <option value="type1">Type 1</option>
-                        <option value="type2">Type 2</option>
-                        <option value="type3">Type 3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="jobSource">Job Source:</label>
-                    <select id="jobSource" name="jobSource">
-                        <option value="source1">Source 1</option>
-                        <option value="source2">Source 2</option>
-                        <option value="source3">Source 3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="jobDescription">Job Description:</label>
-                    <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
-                </div>
-            </form>
+            <h2>Client Details</h2>
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div>
+                <label for="email">Email (optional):</label>
+                <input type="email" id="email" name="email">
+            </div>
         </div>
-
-        <!-- 3rd Section: Service Location -->
+        
+        <!-- 2. Job Details -->
         <div class="section">
-            <h1>Service Location</h1>
-            <form action="/submit-job" method="post">
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="form-group">
-                    <label for="state">State:</label>
-                    <input type="text" id="state" name="state" required>
-                </div>
-                <div class="form-group">
-                    <label for="zipCode">Zip Code:</label>
-                    <input type="text" id="zipCode" name="zipCode" required>
-                </div>
-                <div class="form-group">
-                    <label for="area">Area:</label>
-                    <select id="area" name="area">
-                        <option value="area1">Area 1</option>
-                        <option value="area2">Area 2</option>
-                        <option value="area3">Area 3</option>
-                    </select>
-                </div>
-            </form>
+            <h2>Job Details</h2>
+            <div>
+                <label for="jobType">Job Type:</label>
+                <select id="jobType" name="jobType">
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                    <option value="type3">Type 3</option>
+                </select>
+            </div>
+            <div>
+                <label for="jobSource">Job Source:</label>
+                <select id="jobSource" name="jobSource">
+                    <option value="source1">Source 1</option>
+                    <option value="source2">Source 2</option>
+                    <option value="source3">Source 3</option>
+                </select>
+            </div>
+            <div>
+                <label for="jobDescription">Job Description:</label>
+                <textarea id="jobDescription" name="jobDescription"></textarea>
+            </div>
         </div>
-
-        <!-- 4th Section: Scheduled -->
+        
+        <!-- 3. Service Location -->
         <div class="section">
-            <h1>Scheduled</h1>
-            <form action="/submit-job" method="post">
-                <div class="form-group">
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate" name="startDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="startTime">Start Time:</label>
-                    <input type="time" id="startTime" name="startTime" required>
-                </div>
-                <div class="form-group">
-                    <label for="endTime">End Time:</label>
-                    <input type="time" id="endTime" name="endTime">
-                </div>
-                <div class="form-group">
-                    <label for="testSelect">Test Select:</label>
-                    <select id="testSelect" name="testSelect">
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit">Create Job</button>
-                </div>
-            </form>
+            <h2>Service Location</h2>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city">
+            </div>
+            <div>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state">
+            </div>
+            <div>
+                <label for="zipCode">Zip Code:</label>
+                <input type="text" id="zipCode" name="zipCode">
+            </div>
+            <div>
+                <label for="area">Area:</label>
+                <select id="area" name="area">
+                    <option value="area1">Area 1</option>
+                    <option value="area2">Area 2</option>
+                    <option value="area3">Area 3</option>
+                </select>
+            </div>
         </div>
-    </div>
-
-    <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
+        
+        <!-- 4. Scheduled -->
+        <div class="section">
+            <h2>Scheduled</h2>
+            <div>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div>
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime" name="startTime" required>
+            </div>
+            <div>
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime" name="endTime">
+            </div>
+            <div>
+                <label for="testSelect">Test Select:</label>
+                <select id="testSelect" name="testSelect">
+                    <option value="test1">Test 1</option>
+                    <option value="test2">Test 2</option>
+                    <option value="test3">Test 3</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="submit-button">
+            <button type="submit">Create Job</button>
+        </div>
+    </form>
 </body>
 </html>
