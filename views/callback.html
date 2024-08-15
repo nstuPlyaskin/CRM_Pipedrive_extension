@@ -3,7 +3,7 @@
 <head>
     <title>Create a Job</title>
     <link rel="stylesheet" href="../public/css/modal-form.css">
-    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> <!-- Подключаем SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
     <script>
         (async function() {
             const sdk = await new AppExtensionsSDK().initialize();
@@ -12,10 +12,11 @@
 </head>
 <body>
     <div class="container">
-        <!-- 1st Section: Client Details -->
-        <div class="section" id="client-details-frame">
-            <h1>Client Details</h1>
-            <form id="client-details-form">
+        <!-- Объединенный form элемент -->
+        <form id="job-form" action="/submit-job" method="post">
+            <!-- 1st Section: Client Details -->
+            <div class="section" id="client-details-frame">
+                <h1>Client Details</h1>
                 <div class="form-group">
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" required>
@@ -32,13 +33,11 @@
                     <label for="email">Email (optional):</label>
                     <input type="email" id="email" name="email">
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 2nd Section: Job Details -->
-        <div class="section">
-            <h1>Job Details</h1>
-            <form id="job-details-form">
+            <!-- 2nd Section: Job Details -->
+            <div class="section">
+                <h1>Job Details</h1>
                 <div class="form-group">
                     <label for="jobType">Job Type:</label>
                     <select id="jobType" name="jobType">
@@ -59,13 +58,11 @@
                     <label for="jobDescription">Job Description:</label>
                     <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 3rd Section: Service Location -->
-        <div class="section">
-            <h1>Service Location</h1>
-            <form id="service-location-form">
+            <!-- 3rd Section: Service Location -->
+            <div class="section">
+                <h1>Service Location</h1>
                 <div class="form-group">
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" required>
@@ -90,13 +87,11 @@
                         <option value="area3">Area 3</option>
                     </select>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- 4th Section: Scheduled -->
-        <div class="section">
-            <h1>Scheduled</h1>
-            <form id="scheduled-form">
+            <!-- 4th Section: Scheduled -->
+            <div class="section">
+                <h1>Scheduled</h1>
                 <div class="form-group">
                     <label for="startDate">Start Date:</label>
                     <input type="date" id="startDate" name="startDate" required>
@@ -117,13 +112,13 @@
                         <option value="option3">Option 3</option>
                     </select>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <!-- Submit Button -->
-        <div class="form-actions">
-            <button type="submit" form="client-details-form, job-details-form, service-location-form, scheduled-form">Create Job</button>
-        </div>
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit">Create Job</button>
+            </div>
+        </form>
     </div>
 
     <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->

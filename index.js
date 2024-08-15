@@ -39,14 +39,24 @@ app.post('/submit-job', async (req, res) => {
           api_token: apiToken
         }
       });
+
       if (searchResponse.data.data && searchResponse.data.data.items.length > 0) {
         personId = searchResponse.data.data.items[0].item.id;
+      } else {
+        // Если клиента не существует, создаем его
+        const createPersonResponse = await axios.post(`${apiUrl}/persons?api_token=${apiToken}`, {
+          name: `${jobData.firstName} ${jobData.lastName}`,
+          email: jobData.email,
+          phone: jobData.phone
+        });
+
+        personId = createPersonResponse.data.data.id;
       }
     }
 
     // Создаем новую сделку
     const dealResponse = await axios.post(`${apiUrl}/deals?api_token=${apiToken}`, {
-      title: `${jobData.firstName} ${jobData.lastName}`,
+      title: `${jobData.firstName} ${jobData.lastName} - ${jobData.jobType}`,
       person_id: personId,
       value: 0, // Установите значение сделки, если это необходимо
       custom_fields: {
@@ -68,7 +78,7 @@ app.post('/submit-job', async (req, res) => {
     console.log('Deal Created:', dealResponse.data);
     res.send('Job created successfully!');
   } catch (error) {
-    console.error('Error creating job:', error);
+    console.error('Error creating job:', error.response ? error.response.data : error.message);
     res.status(500).send('Error creating job');
   }
 });
