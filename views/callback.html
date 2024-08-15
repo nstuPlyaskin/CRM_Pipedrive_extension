@@ -13,98 +13,101 @@
     </script>
 </head>
 <body>
+  
+  
   <div class="container">
-      <form id="job-form" action="/submit-job" method="POST">
-          <div class="form-section" id="client-section">
-              <h2>Client details</h2>
-              <div class="form-row">
-                  <div class="form-group">
-                      <input type="text" id="firstName" name="firstName" placeholder="First name" required>
-                  </div>
-                  <div class="form-group">
-                      <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <input type="tel" id="phone" name="phone" placeholder="Phone" required>
-              </div>
-              <div class="form-group">
-                  <input type="email" id="email" name="email" placeholder="Email (optional)">
-              </div>
-          </div>
-
-          <div class="form-section" id="job-details-section">
-              <h2>Job details</h2>
-              <div class="form-row">
-                  <div class="form-group">
-                      <select id="jobType" name="jobType" placeholder="Job type">
-                          <option value="type1">Type 1</option>
-                          <option value="type2">Type 2</option>
-                          <option value="type3">Type 3</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <select id="jobSource" name="jobSource" placeholder="Job source">
-                          <option value="source1">Source 1</option>
-                          <option value="source2">Source 2</option>
-                          <option value="source3">Source 3</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <textarea id="jobDescription" name="jobDescription" placeholder="Job description (optional)" rows="4"></textarea>
-              </div>
-          </div>
-
-         <div class="form-section" id="service-location-section">
-    <h2>Service location</h2>
-    <div class="form-group">
-        <input type="text" id="address" name="address" placeholder="Address" required>
-    </div>
-    <div class="form-group">
-        <input type="text" id="state" name="state" placeholder="State" required>
-    </div>
-    <div class="form-row">
-        <div class="form-group">
-            <input type="text" id="zipCode" name="zipCode" placeholder="Zip code" required>
+    <form>
+    <!-- Верхний ряд -->
+    <div class="form-section" id="client-section">
+        <h2>Client details</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+            </div>
         </div>
         <div class="form-group">
-            <select id="area" name="area" placeholder="Area">
-                <option value="area1">Area 1</option>
-                <option value="area2">Area 2</option>
-                <option value="area3">Area 3</option>
+            <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email (optional)">
+        </div>
+    </div>
+
+    <div class="form-section" id="job-details-section">
+        <h2>Job details</h2>
+        <div class="form-group">
+            <select id="jobType" name="jobType" placeholder="Job type">
+                <option value="type1">Type 1</option>
+                <option value="type2">Type 2</option>
+                <option value="type3">Type 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="jobSource">Job source</label>
+            <select id="jobSource" name="jobSource">
+                <option value="source1">Source 1</option>
+                <option value="source2">Source 2</option>
+                <option value="source3">Source 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="jobDescription">Job description (optional)</label>
+            <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
+        </div>
+    </div>
+
+    <!-- Нижний ряд -->
+    <div class="form-section" id="service-location-section">
+        <h2>Service location</h2>
+        <div class="form-group">
+            <input type="text" id="address" name="address" placeholder="Address" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="state" name="state" placeholder="State" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <input type="text" id="zipCode" name="zipCode" placeholder="Zip code" required>
+            </div>
+            <div class="form-group">
+                <select id="area" name="area" placeholder="Area">
+                    <option value="area1">Area 1</option>
+                    <option value="area2">Area 2</option>
+                    <option value="area3">Area 3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-section" id="scheduled-section">
+        <h2>Scheduled</h2>
+        <div class="form-group">
+            <input type="date" id="startDate" name="startDate" placeholder="Start date" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <input type="time" id="startTime" name="startTime" placeholder="Start time" required>
+            </div>
+            <div class="form-group">
+                <input type="time" id="endTime" name="endTime" placeholder="End time">
+            </div>
+        </div>
+        <div class="form-group">
+            <select id="testSelect" name="testSelect" placeholder="Test select">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
             </select>
         </div>
     </div>
-</div>
-
-<div class="form-section" id="scheduled-section">
-    <h2>Scheduled</h2>
-    <div class="form-group">
-        <input type="date" id="startDate" name="startDate" placeholder="Start date" required>
-    </div>
-    <div class="form-row">
-        <div class="form-group">
-            <input type="time" id="startTime" name="startTime" placeholder="Start time" required>
+           <div class="form-actions">
+            <button type="submit">Create Job</button>
         </div>
-        <div class="form-group">
-            <input type="time" id="endTime" name="endTime" placeholder="End time">
-        </div>
-    </div>
-    <div class="form-group">
-        <select id="testSelect" name="testSelect" placeholder="Test select">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select>
-    </div>
+    </form>
 </div>
-
-          <div class="form-actions">
-              <button type="submit">Create Job</button>
-          </div>
-      </form>
-  </div>
 
 </body>
 </html>

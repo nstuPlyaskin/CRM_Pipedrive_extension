@@ -7,7 +7,8 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+    grid-template-rows: auto auto; /* Две строки для размещения секций */
     gap: 20px;
     max-width: 1200px;
     margin: 40px auto;
@@ -17,7 +18,6 @@ body {
 .form-section {
     background: white;
     padding: 20px;
-    margin-bottom: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -28,23 +28,8 @@ body {
     margin-bottom: 10px;
 }
 
-.form-row {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 1fr 1fr;
-}
-
 .form-group {
-    display: flex;
-    flex-direction: column;
     margin-bottom: 10px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
 }
 
 .form-group input,
@@ -62,9 +47,15 @@ body {
     resize: vertical;
 }
 
+.form-row {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr; /* Две колонки для парных полей (например, Zip code и Area) */
+}
+
 .form-actions {
-    grid-column: span 2;
     text-align: center;
+    grid-column: span 2; /* Центровка кнопки на всю ширину формы */
     margin-top: 20px;
 }
 
