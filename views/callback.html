@@ -121,11 +121,46 @@
         </div>
     </div>
 
-                 <!-- Кнопки действий -->
-                <div class="form-actions">
-                    <button type="submit">Create Job</button>
-                    <button type="button" onclick="window.close();">Cancel</button>
-                </div>
+    <!-- Кнопки действий -->
+    <div class="form-actions">
+        <button type="button" onclick="submitAllForms()">Create Job</button>
+        <button type="button" onclick="window.close();">Cancel</button>
+    </div>
+
+    <script>
+        async function submitAllForms() {
+            const forms = [
+                document.getElementById('client-details-form'),
+                document.getElementById('job-details-form'),
+                document.getElementById('service-location-form'),
+                document.getElementById('scheduled-form')
+            ];
+
+            const formData = new FormData();
+
+            // Сбор данных из всех форм
+            forms.forEach(form => {
+                const formEntries = new FormData(form).entries();
+                for (const [key, value] of formEntries) {
+                    formData.append(key, value);
+                }
+            });
+
+            try {
+                const response = await sdk.request('POST', '/your-submit-endpoint', formData);
+
+                if (response.ok) {
+                    // Обработка успешного ответа
+                    console.log('Success:', await response.json());
+                    sdk.closeModal();
+                } else {
+                    console.error('Error:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Request failed:', error);
+            }
+        }
+    </script>
 
     <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
 </body>
