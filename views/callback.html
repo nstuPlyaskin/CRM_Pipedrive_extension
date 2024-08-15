@@ -15,8 +15,7 @@
 <body>
   
   
-  <div class="container">
-    <form>
+    <form id="job-form" action="/submit-job" method="POST">
     <!-- Верхний ряд -->
     <div class="form-section" id="client-section">
         <h2>Client details</h2>
@@ -46,16 +45,14 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="jobSource">Job source</label>
-            <select id="jobSource" name="jobSource">
+            <select id="jobSource" name="jobSource" placeholder="Job source">
                 <option value="source1">Source 1</option>
                 <option value="source2">Source 2</option>
                 <option value="source3">Source 3</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="jobDescription">Job description (optional)</label>
-            <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
+            <textarea id="jobDescription" name="jobDescription" placeholder="Job description (optional)" rows="4"></textarea>
         </div>
     </div>
 
@@ -107,7 +104,6 @@
             <button type="submit">Create Job</button>
         </div>
     </form>
-</div>
 
 </body>
 </html>
