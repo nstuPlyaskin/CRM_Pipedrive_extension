@@ -7,7 +7,7 @@ import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
     const desiredHeight = 400;
 
     await sdk.execute('showFloatingWindow', {
-        message: 'Action ZZZZZZ completed',
+        message: 'Action completed',
         context: {
             url: 'https://iridescent-jagged-magic.glitch.me/callback',
             width: desiredWidth,

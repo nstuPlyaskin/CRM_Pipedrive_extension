@@ -2,12 +2,12 @@ const path = require('path');
 const { createJob } = require('./pipedriveService');
 
 module.exports = (app) => {
-  // GET-маршрут для отображения формы в iframe
+  // showing iform (ui)
   app.get('/callback', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'callback.html'));
   });
 
-  // Обработка отправки формы
+  // projecss data from form
   app.post('/submit-job', async (req, res) => {
     try {
       await createJob(req.body);
