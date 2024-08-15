@@ -100,18 +100,20 @@ app.post('/submit-job', async (req, res) => {
       title: `${jobData.firstName} ${jobData.lastName} - ${jobData.jobType}`,
       person_id: personId,
       value: 0, // Установите значение сделки, если это необходимо
-      [jobTypeFieldId]: jobData.jobType,
-      [jobSourceFieldId]: jobData.jobSource,
-      [jobDescriptionFieldId]: jobData.jobDescription,
-      [addressFieldId]: jobData.address,
-      [cityFieldId]: jobData.city,
-      [stateFieldId]: jobData.state,
-      [zipCodeFieldId]: jobData.zipCode,
-      [areaFieldId]: jobData.area,
-      [startDateFieldId]: jobData.startDate,
-      [startTimeFieldId]: jobData.startTime,
-      [endTimeFieldId]: jobData.endTime,
-      [testSelectFieldId]: jobData.testSelect
+      custom_fields: {
+        [jobTypeFieldId]: jobData.jobType,
+        [jobSourceFieldId]: jobData.jobSource,
+        [jobDescriptionFieldId]: jobData.jobDescription,
+        [addressFieldId]: jobData.address,
+        [cityFieldId]: jobData.city,
+        [stateFieldId]: jobData.state,
+        [zipCodeFieldId]: jobData.zipCode,
+        [areaFieldId]: jobData.area,
+        [startDateFieldId]: jobData.startDate,
+        [startTimeFieldId]: jobData.startTime,
+        [endTimeFieldId]: jobData.endTime,
+        [testSelectFieldId]: jobData.testSelect
+      }
     });
 
     console.log('Deal Created:', dealResponse.data);
