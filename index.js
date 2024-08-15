@@ -4,7 +4,7 @@ const axios = require('axios');
 const path = require('path');
 
 // Настройка API Token для Pipedrive
-const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f'; // Замените на ваш API Token
+const apiToken = 'e843bc9cfa0c568a700dbf81a3c20014c006da4f';
 const apiUrl = 'https://api.pipedrive.com/v1';
 
 // Настройка Express

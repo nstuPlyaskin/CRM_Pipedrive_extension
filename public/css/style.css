@@ -1,22 +1,74 @@
-.jumbotron {
+iframe {
+    width: 900px;
+    height: 600px;
+    border: none;
+}
+
+.cui5-modal__wrap {
+    width: 100vh;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+}
+
+h1 {
+    color: #333333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    opacity: 0;
-    animation: reveal 4s forwards;
+    padding: 20px;
 }
 
-.outcome-won {
-    background-color: green!important;
+.section {
+    flex: 1;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.outcome-lost {
-    background-color: red!important;
+.section h2 {
+    margin-top: 0;
 }
 
-@keyframes reveal {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }

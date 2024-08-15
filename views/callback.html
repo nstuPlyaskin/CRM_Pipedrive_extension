@@ -11,45 +11,119 @@
     </script>
 </head>
 <body>
-    <h1>Create a New Job</h1>
-    <form action="/submit-job" method="post">
-        <div>
-            <label>First Name:</label>
-            <input type="text" name="firstName" required>
+    <div class="container">
+        <!-- 1st Section: Client Details -->
+        <div class="section" id="client-details-frame">
+            <h1>Client Details</h1>
+            <form action="/submit-job" method="post">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email (optional):</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Last Name:</label>
-            <input type="text" name="lastName" required>
+
+        <!-- 2nd Section: Job Details -->
+        <div class="section">
+            <h1>Job Details</h1>
+            <form action="/submit-job" method="post">
+                <div class="form-group">
+                    <label for="jobType">Job Type:</label>
+                    <select id="jobType" name="jobType">
+                        <option value="type1">Type 1</option>
+                        <option value="type2">Type 2</option>
+                        <option value="type3">Type 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jobSource">Job Source:</label>
+                    <select id="jobSource" name="jobSource">
+                        <option value="source1">Source 1</option>
+                        <option value="source2">Source 2</option>
+                        <option value="source3">Source 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jobDescription">Job Description:</label>
+                    <textarea id="jobDescription" name="jobDescription" rows="4"></textarea>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Phone:</label>
-            <input type="tel" name="phone" required>
+
+        <!-- 3rd Section: Service Location -->
+        <div class="section">
+            <h1>Service Location</h1>
+            <form action="/submit-job" method="post">
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" required>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip Code:</label>
+                    <input type="text" id="zipCode" name="zipCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="area">Area:</label>
+                    <select id="area" name="area">
+                        <option value="area1">Area 1</option>
+                        <option value="area2">Area 2</option>
+                        <option value="area3">Area 3</option>
+                    </select>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Email (optional):</label>
-            <input type="email" name="email">
+
+        <!-- 4th Section: Scheduled -->
+        <div class="section">
+            <h1>Scheduled</h1>
+            <form action="/submit-job" method="post">
+                <div class="form-group">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="time" id="startTime" name="startTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="time" id="endTime" name="endTime">
+                </div>
+                <div class="form-group">
+                    <label for="testSelect">Test Select:</label>
+                    <select id="testSelect" name="testSelect">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Create Job</button>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>Job Type:</label>
-            <select name="jobType">
-                <option value="type1">Type 1</option>
-                <option value="type2">Type 2</option>
-            </select>
-        </div>
-        <div>
-            <label>Start Date:</label>
-            <input type="date" name="startDate" required>
-        </div>
-        <div>
-            <label>Start Time:</label>
-            <input type="time" name="startTime" required>
-        </div>
-        <div>
-            <label>End Time:</label>
-            <input type="time" name="endTime">
-        </div>
-        <button type="submit">Create Job</button>
-    </form>
+    </div>
+
     <script src="/pipedrive-floating-window.js"></script> <!-- Подключение скрипта -->
 </body>
 </html>

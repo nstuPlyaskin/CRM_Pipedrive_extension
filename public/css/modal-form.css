@@ -2,39 +2,74 @@ iframe {
     width: 900px;
     height: 600px;
     border: none;
-
 }
-cui5-modal__wrap{
+
+.cui5-modal__wrap {
     width: 100vh;
 }
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding: 0;
 }
+
 h1 {
     color: #333333;
 }
-form div {
-    margin: 15px;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
-label {
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.section h1 {
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
-input, select {
+
+input, select, textarea {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
+
+textarea {
+    resize: vertical;
+}
+
 button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #45a049;
 }
